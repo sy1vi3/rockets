@@ -1,7 +1,8 @@
+icon_server*
 .idea*
 *.proto
 .DS_Store
-node_modules
+node_modules*
 /build
 /.svelte-kit
 /package

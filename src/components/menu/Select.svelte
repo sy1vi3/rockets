@@ -1,63 +1,128 @@
+<script context="module" lang="ts">
+    export enum AnchorX {
+        Left = 1,
+        Right = 2
+    }
+
+    export enum AnchorY {
+        Top = 1,
+        Bottom = 2
+    }
+</script>
+
 <script lang="ts">
     import './menu.css'
     import Box from "../design/Box.svelte";
     import {createEventDispatcher} from 'svelte';
     import {slide} from 'svelte/transition';
+    import type {popupCallback} from "./Popup.svelte";
+    import Popup from "./Popup.svelte";
 
     export let options: Option[] = []
     export let defaultOption: string = ""
     export let title: string = ""
+    export let anchorX: AnchorX = AnchorX.Right
+    export let anchorY: AnchorY = AnchorY.Top
 
     const dispatch = createEventDispatcher();
-    let showDropdown = false
+    let selectButton: HTMLDivElement
+
+    function setMaxHeight(div: HTMLDivElement) {
+        const buttonBounds = selectButton.getBoundingClientRect()
+        const py = 20
+        const px = 10
+
+        if (anchorX === AnchorX.Left) {
+            div.style.left = buttonBounds.left + "px"
+        }
+        else if (anchorX === AnchorX.Right) {
+            div.style.right = window.innerWidth - buttonBounds.right + "px"
+        }
+        if (anchorY === AnchorY.Top) {
+            div.style.top = buttonBounds.bottom + "px"
+        }
+        else if (anchorY === AnchorY.Bottom) {
+            div.style.bottom = window.innerHeight - buttonBounds.top + "px"
+        }
+        const bounds = div.getBoundingClientRect()
+
+        let maxHeight = window.innerHeight - bounds.top - (py * 2)
+        if (bounds.bottom > window.innerHeight) {
+            console.log("bottom")
+            div.style.top = py + "px"
+
+            maxHeight += bounds.top
+            div.style.maxHeight = maxHeight + "px"
+        }
+        if (bounds.top < 0) {
+            console.log("top")
+            div.style.bottom = py + "px"
+
+            maxHeight += bounds.bottom
+            div.style.maxHeight = maxHeight + "px"
+        }
+        if (bounds.left < 0) {
+            console.log("left")
+            div.style.transform = `translateX(${(bounds.left * -1) + px}px)`
+        }
+        if (bounds.right > window.innerWidth) {
+            console.log("right")
+            div.style.transform = `translateX(${(window.innerWidth - bounds.right) + px}px)`
+        }
+    }
 
     interface Option {
         label: string;
         value: any;
     }
 
-    function closeDropdown() {
-        showDropdown = false
-    }
-
-    function openDropdown() {
-        showDropdown = true
-    }
+    let openDropdown: popupCallback
+    let closeDropdown: popupCallback
 
     function selectOption(value: string) {
         closeDropdown()
-        dispatch("select", { value });
+        dispatch("select", {value});
     }
 </script>
 
-<div class="relative">
-    <Box
-        tag="button"
-        class="button z-30 bg-slate-50"
-        on:click={openDropdown}
+<div class="relative w-fit">
+    <div
+        class="w-fit h-fit"
+        bind:this={selectButton}
     >
-        {defaultOption}
-    </Box>
-
-    {#if showDropdown}
-        <button
-            on:click={closeDropdown}
-            on:touchstart={closeDropdown}
-            class="fixed z-40 w-full h-full left-0 top-0 cursor-default backdrop-blur-[1px] backdrop-brightness-90"
-        ></button>
-        <div in:slide={{duration: 60}}>
+        <slot
+            name="button" {openDropdown} {defaultOption}
+        >
             <Box
-                class="absolute max-h-[90vh] mt-12 z-50 overflow-auto py-2 button-shadow text-center bg-slate-50 bottom-0 right-0 flex flex-col-reverse min-[1145px]:flex-col min-[1145px]:right-auto min-[1145px]:-top-12"
+                tag="button"
+                class="button bg-slate-50 h-full text-fore"
+                on:click={openDropdown}
+                props={{title: title}}
             >
-                {#each options as option}
-                    <button
-                            on:click={() => selectOption(option.value)}
-                            class="w-full whitespace-nowrap px-12 py-2.5 hover:bg-slate-900 hover:text-slate-50 min-[1145px]px-7"
-                    >
-                        {option.label}
-                    </button>
-                {/each}
+                {defaultOption}
             </Box>
+        </slot>
+    </div>
+
+    <Popup
+        bind:openPopup={openDropdown}
+        bind:closePopup={closeDropdown}
+    >
+        <div
+            class="fixed z-30 overflow-y-auto py-2 button-shadow outline-2 outline outline-outline text-center bg-back text-fore flex flex-col"
+            transition:slide={{duration: 80}}
+            use:setMaxHeight
+        >
+            {#each options as option}
+                <button
+                    on:click={() => selectOption(option.value)}
+                    class="w-full whitespace-nowrap px-12 py-2.5 hover:bg-fore hover:text-back"
+                    title={option.label}
+                >
+                    {option.label}
+                </button>
+            {/each}
         </div>
-    {/if}
+    </Popup>
 </div>
+

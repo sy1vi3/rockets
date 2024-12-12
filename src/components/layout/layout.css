@@ -1,0 +1,33 @@
+.nav-button {
+    @apply h-16;
+}
+
+.nav-button:hover {
+    @apply bg-fore text-back fill-back;
+}
+
+.h-screen-dynamic {
+    min-height: 100vh;
+}
+
+.menu {
+    @apply flex-col-reverse fixed bottom-4 right-6;
+}
+
+.navbar-desktop {
+    @apply hidden;
+}
+
+.navbar-mobile {
+    @apply flex;
+}
+
+@media (min-width: 600px) {
+    .navbar-desktop {
+        @apply flex;
+    }
+
+    .navbar-mobile {
+        @apply hidden;
+    }
+}

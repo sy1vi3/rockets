@@ -7,6 +7,7 @@ export const LANGUAGES = {
     "es": "Español",
     "fr": "Français",
     "it": "Italiano",
+    "pl": "Polski",
     "tr": "Türkçe",
     "pt": "Português Brasileiro",
     "id": "Bahasa Indonesia",
@@ -17,6 +18,7 @@ export const LANGUAGES = {
     "ko": "한국어",
     "th": "ไทย",
 };
+export const languageOptions = Object.keys(LANGUAGES).map(langKey => ({"label": LANGUAGES[langKey], "value": langKey}))
 const LANG_KEY = "language"
 const defaultLocale = Object.keys(LANGUAGES)[0]
 

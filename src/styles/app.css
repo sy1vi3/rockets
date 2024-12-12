@@ -2,16 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+    @apply h-full;
+}
+
 body {
-    --color-1: hsl(50, 98%, 93%);
-    --color-2: hsl(50, 98%, 98%);
+    @apply font-lexend text-slate-900 text-sm;
+    --button-shadow: 0.25rem 0.25rem rgb(var(--color-menu-outline))
+}
 
+@layer base {
+    body[data-theme='light'], body[data-theme='default'] {
+        --color-menu-background: 248 250 252;
+        --color-menu-foreground: 15 23 42;
+        --color-menu-outline: var(--color-menu-foreground);
+        --color-bg-pattern-1: hsl(50, 98%, 93%);
+        --color-bg-pattern-2: hsl(50, 98%, 98%);
+        --color-hero-bg-1: hsl(46, 97%, 74%);
+        --color-hero-bg-2: hsl(46, 97%, 79%);
+        --color-hero-header: hsl(210, 40%, 98%);
+        --color-hero-link: hsl(201, 94%, 88%);
+    }
+
+    body[data-theme='dark'] {
+        --color-menu-background: 24 24 27;
+        --color-menu-foreground: 203 213 225;
+        --color-menu-outline: 47 47 49;
+        /*--color-bg-pattern-1: hsl(27, 43%, 14%);*/
+        /*--color-bg-pattern-2: hsl(27, 43%, 16%);*/
+        --color-bg-pattern-1: hsl(269, 37%, 12%);
+        --color-bg-pattern-2: hsl(269, 37%, 14%);
+        --color-hero-bg-1: hsl(258, 82%, 66%);
+        --color-hero-bg-2: hsl(258, 82%, 69%);
+        --color-hero-header: hsl(251, 95%, 97%);
+        --color-hero-link: hsl(17, 88%, 68%);
+    }
+}
+
+.background {
     background: repeating-linear-gradient(
-        45deg,
-        var(--color-1),         var(--color-1) 60px,
-        var(--color-2) 60px,    var(--color-2) 70px );
+            45deg,
+            var(--color-bg-pattern-1), var(--color-bg-pattern-1) 60px,
+            var(--color-bg-pattern-2) 60px, var(--color-bg-pattern-2) 70px
+    ) no-repeat center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: -1;
+}
 
-    @apply font-lexend text-slate-900 text-sm
+@media (prefers-reduced-motion) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 
 @layer base {

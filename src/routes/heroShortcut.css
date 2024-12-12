@@ -1,0 +1,72 @@
+@media (min-width: 320px) {
+    .title::after {
+        @apply ml-4;
+        content: "»";
+    }
+}
+
+.card {
+    @apply mx-auto left-0 right-0;
+
+    transition: transform 500ms;
+}
+
+.grunt-card-1 {
+    @apply -rotate-12 -right-48 scale-125 ;
+}
+
+.grunt-card-2 {
+    @apply rotate-12 top-12 -left-6 right-64 scale-110;
+}
+
+.grunt-card-3 {
+    @apply -rotate-3 top-28 left-20 scale-105;
+}
+
+.raid-card-1 {
+    @apply -rotate-6 -top-6 -right-32 scale-110 ;
+}
+
+.raid-card-2 {
+    @apply rotate-6 top-12 -left-6 right-64 scale-105;
+}
+
+.raid-card-3 {
+    @apply -rotate-1 top-20 -right-96 scale-105;
+}
+
+@media (min-width: 670px) {
+    .card {
+        @apply scale-90 rotate-6;
+    }
+
+    .grunt-card-1 {
+        @apply right-0 left-20 -top-6 rotate-6 scale-110;
+        @apply group-hover/hero:rotate-[9deg] group-hover/hero:scale-[1.2];
+    }
+
+    .grunt-card-2 {
+        @apply -left-12 right-48 top-6 -rotate-6 scale-100;
+        @apply group-hover/hero:rotate-[-10deg] group-hover/hero:scale-[1.13];
+    }
+
+    .grunt-card-3 {
+        @apply rotate-3 left-12 top-20 scale-95;
+        @apply group-hover/hero:rotate-[7deg] group-hover/hero:scale-[1.1];
+    }
+
+    .raid-card-1 {
+        @apply left-20 -right-2 top-3 scale-105 rotate-3;
+        @apply group-hover/hero:rotate-[5deg] group-hover/hero:scale-[1.17];
+    }
+
+    .raid-card-2 {
+        @apply -left-12 right-48 top-6 -rotate-1 scale-90;
+        @apply group-hover/hero:rotate-[-3deg] group-hover/hero:scale-[1.02];
+    }
+
+    .raid-card-3 {
+        @apply rotate-6 left-12 top-20 scale-[.85];
+        @apply group-hover/hero:rotate-[7deg] group-hover/hero:scale-95;
+    }
+}
