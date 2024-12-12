@@ -1,7 +1,7 @@
 import type {ApiResponse} from "../../@types/gruntApi";
 import type {RawMigration, Migration, CurrentRaids} from "../../@types/raidApi";
 
-const api = "https://rocket.malte.im/api"
+const api = "https://rockets-api.sylvie.fyi/api/v1"
 export const gruntEndpoint = api + "/characters"
 export const raidEndpoint = api + "/raids"
 import { error } from '@sveltejs/kit'
