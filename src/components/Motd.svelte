@@ -25,24 +25,6 @@
         class="w-full col-span-full bg-back text-fore flex divide-x-2 divide-slate-900"
         rounded
     >
-        <a
-                class="block h-full w-full p-4"
-                href={DISCORD}
-        >
-            <p class="max-w-3xl mx-auto">
-                Team Rocket lineups changed! Unfortunately, this site doesn't handle these changes properly yet.
-                <br/>
-                Luckily, An update is being worked on! If you want to follow along, feel free
-                <a
-                        class="text-blue-600 underline visited:text-purple-600"
-                        href={DISCORD}>
-                    to join my Discord server</a>.
-
-                <br />
-                Thank you for visiting, and I hope you find this page helpful!
-            </p>
-        </a>
-
         <button
             class="flex items-center justify-center p-4 stroke-slate-900"
             title="Close Note"
