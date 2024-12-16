@@ -19,17 +19,18 @@
 		"@types/cookie": "^0.5.2",
 		"autoprefixer": "^10.4.16",
 		"fs": "0.0.1-security",
+		"intl-messageformat": "10.5.11",
 		"postcss": "^8.4.31",
 		"svelte": "^3.59.2",
 		"svelte-check": "^3.5.2",
 		"tailwindcss": "^3.3.3",
 		"tslib": "^2.6.2",
 		"typescript": "^5.2.2",
-		"vite": "^4.4.9",
-		"intl-messageformat": "10.5.11"
+		"vite": "^4.4.9"
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-cloudflare": "^4.8.0",
 		"svelte-i18n": "^3.7.4"
 	},
 	"packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
