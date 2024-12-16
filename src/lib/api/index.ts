@@ -9,9 +9,9 @@ import { error } from '@sveltejs/kit'
 function handleFetchErrors(response: Response) {
     if (!response.ok) {
         if (response.status >= 500 && response.status < 600) {
-            throw error(response.status, {message: "Can't reach the API. Please try again later"})
+            error(response.status, {message: "Can't reach the API. Please try again later"});
         }
-        throw error(response.status, {message: response.statusText})
+        error(response.status, {message: response.statusText});
     }
 }
 
