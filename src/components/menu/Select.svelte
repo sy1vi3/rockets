@@ -110,7 +110,7 @@
     >
         <div
             class="fixed z-30 overflow-y-auto py-2 button-shadow outline-2 outline outline-outline text-center bg-back text-fore flex flex-col"
-            transition:slide={{duration: 80}}
+            transition:slide|global={{duration: 80}}
             use:setMaxHeight
         >
             {#each options as option}

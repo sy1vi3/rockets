@@ -22,7 +22,7 @@
 		"fs": "0.0.1-security",
 		"intl-messageformat": "10.5.11",
 		"postcss": "^8.4.49",
-		"svelte": "^5.14.0",
+		"svelte": "4",
 		"svelte-check": "^3.8.6",
 		"tailwindcss": "^3.4.16",
 		"tslib": "^2.8.1",

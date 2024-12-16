@@ -14,7 +14,7 @@
 
 <Popup bind:openPopup={openModal} bind:closePopup={closeModal}>
     <div
-        transition:scale={{duration: 140}}
+        transition:scale|global={{duration: 140}}
         class="w-full max-w-lg px-3 h-fit absolute left-0 right-0 top-0 bottom-0 m-auto text-fore fill-fore stroke-fore text-lg"
         role="dialog"
     >

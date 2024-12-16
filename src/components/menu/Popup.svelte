@@ -28,7 +28,7 @@
         <button
             on:click={closePopup}
             on:touchstart={closePopup}
-            transition:fade={{duration: 180}}
+            transition:fade|global={{duration: 180}}
             class="w-full h-full cursor-default backdrop-blur-sm backdrop-brightness-90"
             title={$_("site.close_pop_up")}
         ></button>
